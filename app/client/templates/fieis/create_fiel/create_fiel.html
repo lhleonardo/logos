@@ -1,4 +1,17 @@
 <template name="CreateFiel">
-  <h1>Novo fiel</h1>
-  {{> quickForm collection="Fieis" id="insertFielForm" type="insert" buttonContent="Salvar"}}
+  <section class="content-header">
+    <h1>
+      Cadastrar Fiel
+      <small>Cadastrar novos fiéis no sistema, sejam eles ministros, padres,
+        dizimistas, contribuintes, etc.</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
+      <li class="active">Cadastro de Fieis</li>
+    </ol>
+  </section>
+
+  <section class="content">
+    {{> quickForm collection="Fieis" id="insertFielForm" type="insert" buttonContent="Salvar"}}
+  </section>
 </template>
