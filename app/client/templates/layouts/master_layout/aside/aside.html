@@ -15,7 +15,7 @@
     </div>
     <div class="pull-left info">
       <!-- Status -->
-      {{#if userLoggedIn}}
+      {{#if currentUser}}
         <p>Alexander Pierce</p>
         <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
       {{else}}
@@ -28,7 +28,7 @@
 
 <template name="SideBarMenu">
   <ul class="sidebar-menu">
-    {{#if userLoggedIn}}
+    {{#if currentUser}}
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
         <li>
