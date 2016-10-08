@@ -1,18 +1,19 @@
 <template name="MasterLayout">
-  <div class="wrapper">
-    <!-- Main Header -->
-    {{> Header}}
-    <!-- Left side column. contains the logo and sidebar -->
+    <div class="wrapper">
+      <!-- Main Header -->
+      {{> Header}}
+      <!-- Left side column. contains the logo and sidebar -->
+      {{#if userLoggedIn}}
+        {{> Aside}}
+        <main>
+          <div class="content-wrapper">
+              {{>yield}}
+          </div>
+        </main>
+      {{else}}
+        {{> Login}}
+      {{/if}}
 
-    {{> Aside}}
-
-    <main>
-      <div class="content-wrapper">
-          {{>yield}}
-      </div>
-    </main>
-
-    {{> Footer}}
-
-  </div>
+      {{> Footer}}
+    </div>
 </template>

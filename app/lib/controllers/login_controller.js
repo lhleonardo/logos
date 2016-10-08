@@ -1,5 +1,7 @@
 LoginController = RouteController.extend({
 
+  layoutTemplate: 'Login',
+
   // A place to put your subscriptions
   // this.subscribe('items');
   // // add the subscription to the waitlist

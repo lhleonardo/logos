@@ -9,7 +9,9 @@ UsersController = RouteController.extend({
   },
 
   create: function() {
-    this.render('CreateUser', {});
+    if (Meteor.userId()) {
+      this.render('CreateUser', {});
+    }
   },
   // Subscriptions or other things we want to "wait" on. This also
   // automatically uses the loading hook. That's the only difference between
@@ -37,7 +39,11 @@ UsersController = RouteController.extend({
     this.next();
   },
   onBeforeAction: function () {
-    this.next();
+    if (!Meteor.userId()) {
+      this.redirect('login');
+    } else {
+      this.next();
+    }
   },
 
   // The same thing as providing a function as the second parameter. You can

@@ -1,16 +1,20 @@
 FieisController = RouteController.extend({
-
+  
   // A place to put your subscriptions
   // this.subscribe('items');
   // // add the subscription to the waitlist
   // this.subscribe('item', this.params._id).wait();
 
   subscriptions: function() {
-    this.subscribe("fieis");
+    if (Meteor.userId()) {
+      this.subscribe("fieis");
+    }
   },
 
   create: function () {
-    this.render("CreateFiel");
+    if (Meteor.userId()) {
+      this.render("CreateFiel");
+    }
   },
 
   // Subscriptions or other things we want to "wait" on. This also
@@ -39,7 +43,11 @@ FieisController = RouteController.extend({
     this.next();
   },
   onBeforeAction: function () {
-    this.next();
+    if (!Meteor.userId()) {
+      this.redirect('login');
+    } else {
+      this.next();
+    }
   },
 
   // The same thing as providing a function as the second parameter. You can
