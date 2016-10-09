@@ -1,5 +1,5 @@
 FieisController = RouteController.extend({
-  
+
   // A place to put your subscriptions
   // this.subscribe('items');
   // // add the subscription to the waitlist
@@ -13,7 +13,13 @@ FieisController = RouteController.extend({
 
   create: function () {
     if (Meteor.userId()) {
-      this.render("CreateFiel");
+      this.render("CreateFiel", {});
+    }
+  },
+
+  list:function () {
+    if (Meteor.userId()) {
+      this.render('ListFiel', {});
     }
   },
 
