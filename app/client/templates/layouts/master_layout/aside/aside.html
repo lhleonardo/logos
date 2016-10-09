@@ -44,7 +44,7 @@
           </a>
         </li>
         <li>
-          <a href="{{pathFor 'organizacoes'}}">
+          <a href="{{pathFor 'organizacoes.list'}}">
             <i class="fa fa-object-group"></i>
             <span>Organizações</span>
           </a>
@@ -58,8 +58,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Contribuições</a></li>
-            <li><a href="#">Dízimos</a></li>
+            <li><a href="{{pathFor 'contribuicoes.list'}}">Contribuições</a></li>
+            <li><a href="{{pathFor 'dizimos.list'}}">Dízimos</a></li>
           </ul>
         </li>
     {{else}}

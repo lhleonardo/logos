@@ -21,6 +21,7 @@ shell-server@0.2.1            # Server-side component of the `meteor shell` comm
 iron:router
 aldeed:autoform
 aldeed:collection2
+aldeed:tabular
 alanning:roles
 twbs:bootstrap
 momentjs:moment
@@ -29,3 +30,4 @@ accounts-ui
 accounts-password
 codechimp:autoform-masked-input
 mfactory:admin-lte
+session
