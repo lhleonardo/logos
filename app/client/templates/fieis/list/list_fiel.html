@@ -1,8 +1,7 @@
-  <template name="ListFiel">
+<template name="ListFiel">
   <section class="content-header">
     <h1>
-      Listagem de Fieis
-      <small>Aqui você encontra todos os fiéis cadastrados no sistema</small>
+      Relação de Fiéis
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -11,28 +10,39 @@
   </section>
 
   <section class="content">
-    <h3>Listagem aqui</h3>
-  </section>
-
-
-  <div class="box">
-    <div class="box-header">
-    <h3 class="box-title">Listagem dos fieis</h3>
-
-    <div class="box-tools">
-        <div class="input-group input-group-sm" style="width: 150px;">
-            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-            <div class="input-group-btn">
-                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">
+                Aqui você encontra todos os registros cadastrados.
+                <button type="button" class="btn btn-primary btn-lg">Criar novo</button>
+              </h3>
             </div>
-        </div>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body table-responsive no-padding">
-      {{> tabular table=TabularTables.Fieis
-        class="table table-hover"}}
-    </div>
-    </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+                  <div class="col-sm-12" style="margin-bottom: 1%">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    {{> tabular table=TabularTables.Fieis
+                      class="table table-hover"}}
+                  </div>
+                </div>
+              </div>
+            </div>
             <!-- /.box-body -->
-</div>
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+  </section>
+</template>
+
+<template name="fielOperationCell">
+  <a href="{{path}}" class="fa fa-edit">teste</a>
 </template>
