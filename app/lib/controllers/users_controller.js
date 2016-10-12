@@ -1,4 +1,5 @@
-UsersController = DefaultController.extend({
+var roles = ['admin'];
+UsersController = RouteController.extend({
 
   // A place to put your subscriptions
   // this.subscribe('items');
@@ -37,6 +38,17 @@ UsersController = DefaultController.extend({
   },
   onRerun: function () {
     this.next();
+  },
+  onBeforeAction: function () {
+    if (!Meteor.userId()) {
+      this.redirect('login');
+    } else {
+      if (Roles.userIsInRole(Meteor.userId(), roles, Roles.GLOBAL_GROUP)) {
+        this.next();
+      } else {
+        this.render('NotFound');
+      }
+    }
   },
 
   // The same thing as providing a function as the second parameter. You can

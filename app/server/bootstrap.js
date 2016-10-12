@@ -3,12 +3,15 @@ Meteor.startup(function () {
     var user = {
       username: "lhleonardo",
       email: "lhleonardo@hotmail.com",
-      password: "leonardo"
+      password: "admin",
+      profile: {
+        fiel: "jMij7EgLGRbcQiaM3"
+      }
     };
-
-    Accounts.createUser(user);
-
+    var id;
+    id = Accounts.createUser(user);
     console.log('user criado');
-  }
 
+    Roles.addUsersToRoles(id, ['admin'], Roles.GLOBAL_GROUP);
+  }
 });

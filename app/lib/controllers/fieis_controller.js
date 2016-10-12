@@ -1,4 +1,6 @@
-FieisController = DefaultController.extend({
+var roles = ['admin', 'secretaria'];
+
+FieisController = RouteController.extend({
 
   // A place to put your subscriptions
   // this.subscribe('items');
@@ -12,15 +14,11 @@ FieisController = DefaultController.extend({
   },
 
   create: function () {
-    if (Meteor.userId()) {
-      this.render("CreateFiel", {});
-    }
+    this.render("CreateFiel", {});
   },
 
   list:function () {
-    if (Meteor.userId()) {
-      this.render('ListFiel', {});
-    }
+    this.render('ListFiel', {});
   },
 
   // Subscriptions or other things we want to "wait" on. This also
@@ -47,6 +45,18 @@ FieisController = DefaultController.extend({
   },
   onRerun: function () {
     this.next();
+  },
+
+  onBeforeAction: function () {
+    if (!Meteor.userId()) {
+      this.redirect('login');
+    } else {
+      if (Roles.userIsInRole(Meteor.userId(), roles, Roles.GLOBAL_GROUP)) {
+        this.next();
+      } else {
+        this.render('NotFound');
+      }
+    }
   },
 
   // The same thing as providing a function as the second parameter. You can

@@ -29,41 +29,64 @@
 <template name="SideBarMenu">
   <ul class="sidebar-menu">
     {{#if currentUser}}
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li>
-          <a href="{{pathFor 'home'}}" value="Dashboard">
-            <i class="fa fa-dashboard"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{pathFor 'fieis.list'}}">
-            <i class="fa fa-intersex"></i>
-            <span>Fieis</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{pathFor 'organizacoes.list'}}">
-            <i class="fa fa-object-group"></i>
-            <span>Organizações</span>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-link"></i>
-            <span>Lançamentos</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{pathFor 'contribuicoes.list'}}">Contribuições</a></li>
-            <li><a href="{{pathFor 'dizimos.list'}}">Dízimos</a></li>
-          </ul>
-        </li>
+        {{> SidePrincipal}}
+        {{> SideGerenciamento}}
     {{else}}
         <li class="header">Autentique-se para continuar</li>
     {{/if}}
   </ul>
+</template>
+
+<template name="SidePrincipal">
+  <li class="header">PRINCIPAL</li>
+  <!-- Optionally, you can add icons to the links -->
+  <li>
+    <a href="{{pathFor 'home'}}" value="Dashboard">
+      <i class="fa fa-dashboard"></i>
+      <span>Dashboard</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{pathFor 'fieis.list'}}">
+      <i class="fa fa-intersex"></i>
+      <span>Fieis</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{pathFor 'organizacoes.list'}}">
+      <i class="fa fa-object-group"></i>
+      <span>Organizações</span>
+    </a>
+  </li>
+  <li class="treeview">
+    <a href="#">
+      <i class="fa fa-link"></i>
+      <span>Lançamentos</span>
+      <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+      </span>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="{{pathFor 'contribuicoes.list'}}">Contribuições</a></li>
+      <li><a href="{{pathFor 'dizimos.list'}}">Dízimos</a></li>
+    </ul>
+  </li>
+</template>
+
+<template name="SideGerenciamento">
+  <li class="header">ADMINISTRAÇÃO</li>
+
+  <li class="treeview">
+    <a href="#">
+      <i class="fa fa-link"></i>
+      <span>Usuários</span>
+      <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+      </span>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="{{pathFor 'users.create'}}">Novo Usuário</a></li>
+      <li><a href="{{pathFor 'users.list'}}">Visualizar todos</a></li>
+    </ul>
+  </li>
 </template>
