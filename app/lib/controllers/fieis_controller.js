@@ -1,4 +1,4 @@
-FieisController = RouteController.extend({
+FieisController = DefaultController.extend({
 
   // A place to put your subscriptions
   // this.subscribe('items');
@@ -47,13 +47,6 @@ FieisController = RouteController.extend({
   },
   onRerun: function () {
     this.next();
-  },
-  onBeforeAction: function () {
-    if (!Meteor.userId()) {
-      this.redirect('login');
-    } else {
-      this.next();
-    }
   },
 
   // The same thing as providing a function as the second parameter. You can
