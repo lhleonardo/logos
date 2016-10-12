@@ -3,7 +3,9 @@
 /*****************************************************************************/
 
 Meteor.methods({
-  'server/method_name': function () {
-    // server method logic
+  'getNameForUser': function () {
+    let id = Meteor.user().profile.fiel;
+    let nome = Fieis.findOne({_id: id}).nome;
+    return nome;
   }
 });

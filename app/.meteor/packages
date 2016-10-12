@@ -31,3 +31,5 @@ accounts-password
 codechimp:autoform-masked-input
 mfactory:admin-lte
 session
+check
+rzymek:moment-locale-pt-br

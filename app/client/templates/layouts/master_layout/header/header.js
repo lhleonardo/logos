@@ -9,6 +9,9 @@ Template.Header.helpers({
   destroyed: function(){
 
   },
+  role: function () {
+    return Meteor.user().roles.__global_roles__[0];
+  }
 });
 
 Template.Header.events({
