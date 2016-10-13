@@ -11,6 +11,7 @@ TabularTables.Fieis = new Tabular.Table({
     {data: "cpf", title: "CPF"},
     {data: "status", title: "Situação"},
     {
+      title: "Operações",
       tmpl: Meteor.isClient && Template.fielOperationCell
     }
   ]

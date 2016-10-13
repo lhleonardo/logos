@@ -1,42 +1,27 @@
-/*List*/
-Router.route('/fieis', {
-  name: 'fieis.list',
-  template: 'ListFiel',
-  layoutTemplate: 'MasterLayout',
-  where: 'client'
-}, function() {
-  this.render();
-},);
-
-/*View*/
-Router.route('/fieis/:_id', {
-  name: 'fieis.view',
-  template: 'ViewFiel',
-  layoutTemplate: 'MasterLayout',
-  where: 'client'
+/*Listagem*/
+Router.route("/fieis", {
+  name:"fieis.list",
+  controller: 'FieisController',
+  action: 'list'
 });
 
-/*Create*/
-Router.route('/fieis/create', {
-  name: 'fieis.create',
-  template: 'CreateFiel',
-  layoutTemplate: 'MasterLayout',
-  where: 'client',
-
-}, function () {
-  this.render();
+/*Criação*/
+Router.route("fieis/create", {
+  name:"fieis.create",
+  controller: 'FieisController',
+  action: 'create'
 });
 
 /*Edit*/
-Router.route('/fieis/:_id/edit', {
+Router.route('fieis/edit/:_id', {
   name: 'fieis.edit',
-  template: 'UpdateFiel',
-  layoutTemplate: 'MasterLayout',
-  where: 'client'
-}, function () {
-  this.render('UpdateFiel',{
-    data: function () {
-      return Fieis.find({_id: this.params._id});
-    }
-  })
+  controller: 'FieisController',
+  action: 'edit'
+});
+
+/*Visualizar*/
+Router.route('fieis/:_id', {
+  name: 'fieis.view',
+  controller: 'FieisController',
+  action: 'view'
 });

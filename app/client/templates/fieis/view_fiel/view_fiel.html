@@ -1,26 +1,25 @@
-<template name="UpdateFiel">
+<template name="ViewFiel">
   <section class="content-header">
     <h1>
       <a href="{{pathFor 'fieis.list'}}" class="btn btn-warning">
         <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
       </a>
-      Editar - {{nome}}
-      <small>Atualizar os dados informados no registro</small>
+
+      {{nome}}
+      <small>Aqui estão as informações do registro</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
       <li><a href="{{pathFor 'fieis.list'}}"><i class="fa fa-list-alt"></i>Listagem de Fieis</a></li>
-      <li><a href="{{pathFor 'fieis.view' _id}}"><i class="fa fa-male">{{nome}}</i></a></li>
-      <li class="active"> <a href="{{pathFor 'fieis.edit' _id}}"><i class="fa fa-edit">Editar</i></a></li>
+      <li class="active"><a href="{{pathFor 'fieis.view' _id}}"><i class="fa fa-male">{{nome}}</i></a></li>
     </ol>
   </section>
 
   <section class="content">
     {{> quickForm
         collection="Fieis"
-        id="updateFielForm"
+        id="viewFielForm"
         doc=this
-        type="update"
-        buttonContent="Atualizar"}}
+        type="disabled"}}
   </section>
 </template>

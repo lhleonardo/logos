@@ -1,6 +1,9 @@
 <template name="CreateFiel">
   <section class="content-header">
     <h1>
+      <a href="{{pathFor 'fieis.list'}}" class="btn btn-warning">
+        <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
+      </a>
       Cadastrar Fiel
       <small>Cadastrar novos fiéis no sistema, sejam eles ministros, padres,
         dizimistas, contribuintes, etc.</small>
@@ -12,6 +15,6 @@
   </section>
 
   <section class="content">
-    <!-- {{> quickForm collection="Fieis" id="insertFielForm" type="insert" buttonContent="Salvar"}} -->
+    {{> quickForm collection="Fieis" id="insertFielForm" type="insert" buttonContent="Salvar"}}
   </section>
 </template>
