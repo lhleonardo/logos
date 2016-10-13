@@ -42,7 +42,7 @@ HomeController = RouteController.extend({
       if (Roles.userIsInRole(Meteor.userId(), roles, Roles.GLOBAL_GROUP)) {
         this.next();
       } else {
-        this.render('NotFound');
+        this.render('Unauthorized');
       }
     }
   },

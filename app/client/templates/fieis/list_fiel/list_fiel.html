@@ -5,7 +5,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
-      <li class="{{pathFor 'fieis.list'}}">Listagem de Fieis</li>
+      <li class="active"> <a href="{{pathFor 'fieis.list'}}"><i class="fa fa-list-alt"></i>Listagem de Fieis</a></li>
     </ol>
   </section>
 
@@ -16,7 +16,7 @@
             <div class="box-header">
               <h3 class="box-title">
                 Aqui você encontra todos os registros cadastrados.
-                <button type="button" class="btn btn-primary btn-lg">Criar novo</button>
+                <a href="{{pathFor 'fieis.create'}}" role="button" class="btn btn-primary">Criar novo</a>
               </h3>
             </div>
             <!-- /.box-header -->
@@ -44,5 +44,5 @@
 </template>
 
 <template name="fielOperationCell">
-  <a href="{{path}}" class="fa fa-edit">teste</a>
+  <a href="{{pathFor 'fieis.edit' _id}}" class="fa fa-edit"></a>
 </template>

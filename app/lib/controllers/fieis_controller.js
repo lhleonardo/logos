@@ -2,14 +2,10 @@ var roles = ['admin', 'secretaria'];
 
 FieisController = RouteController.extend({
 
-  // A place to put your subscriptions
-  // this.subscribe('items');
-  // // add the subscription to the waitlist
-  // this.subscribe('item', this.params._id).wait();
-
   subscriptions: function() {
-    if (Meteor.userId()) {
-      this.subscribe("fieis");
+    if (Roles.userIsInRole(Meteor.userId(), roles, Roles.GLOBAL_GROUP)){
+        console.log("subscribing...");
+        this.subscribe("fieis");
     }
   },
 
@@ -17,8 +13,12 @@ FieisController = RouteController.extend({
     this.render("CreateFiel", {});
   },
 
-  list:function () {
+  list: function () {
     this.render('ListFiel', {});
+  },
+
+  edit: function () {
+    this.render('UpdateFiel', {});
   },
 
   // Subscriptions or other things we want to "wait" on. This also
@@ -36,6 +36,7 @@ FieisController = RouteController.extend({
   // return Posts.findOne({_id: this.params._id});
 
   data: function () {
+    return Fieis.findOne({_id: this.params._id});
   },
 
   // You can provide any of the hook options
@@ -48,15 +49,18 @@ FieisController = RouteController.extend({
   },
 
   onBeforeAction: function () {
-    if (!Meteor.userId()) {
-      this.redirect('login');
-    } else {
-      if (Roles.userIsInRole(Meteor.userId(), roles, Roles.GLOBAL_GROUP)) {
-        this.next();
-      } else {
-        this.render('NotFound');
-      }
-    }
+    // console.log("Have a userID?");
+    // if (!Meteor.userId()) {
+    //   console.log("Don't have userId");
+    //   this.redirect('login');
+    // }
+    // console.log("Authorized?");
+    // if (!Roles.userIsInRole(Meteor.userId(), roles, Roles.GLOBAL_GROUP)) {
+    //   console.log("unauthorized");
+    //   this.render('Unauthorized');
+    // }
+    // this.next();
+    this.next();
   },
 
   // The same thing as providing a function as the second parameter. You can
