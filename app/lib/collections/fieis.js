@@ -2,11 +2,13 @@ Fieis = new Mongo.Collection("fieis");
 
 Fieis.attachSchema(new SimpleSchema({
   nome: {
+    label: 'Nome completo do fiel',
     type: String,
     optional: false,
     max: 255
   },
   tipo: {
+    label: 'Classificação do fiel',
     type: String,
     allowedValues: ["PADRE", "MINISTRO", "DIZIMISTA", "CONTRIBUINTE"],
     autoform: {
@@ -19,17 +21,30 @@ Fieis.attachSchema(new SimpleSchema({
     }
   },
   sexo: {
+    label: 'Sexo do fiel',
     type: String,
-    allowedValues: ["M", "F", "O"],
+    allowedValues: ["M", "F"],
     autoform: {
       options: [
         {label: "Feminino", value: "F"},
-        {label: "Masculino", value: "M"},
-        {label: "Outro", value: "O"}
+        {label: "Masculino", value: "M"}
       ]
     }
   },
+  dataNascimento: {
+    label: "Data de Nascimento (DD/MM/YYYY)",
+		type: "datetime-local",
+		optional: false,
+    autoform: {
+      type: 'masked-input',
+      mask: "00/00/0000",
+      maskOptions: {
+      	placeholder: "__/__/____"
+      },
+    }
+	},
   cpf: {
+    label: "CPF",
     type: String,
     max: 14,
     min: 14,
@@ -45,10 +60,12 @@ Fieis.attachSchema(new SimpleSchema({
     }
   },
   rg: {
+    label: "RG",
     type: String,
     optional: false,
   },
   status: {
+    label: 'Status',
     type: String,
     allowedValues: ["ATIVO", "INATIVO"],
     autoform: {
@@ -59,67 +76,8 @@ Fieis.attachSchema(new SimpleSchema({
     }
   },
    endereco: {
-     type: Object,
+     type: SchemaEndereco,
      optional: false
-   },
-    "endereco.tipoLogradouro": {
-      type: String,
-      optional: false,
-      allowedValues: ["ALM","AVN","BEC","BLV","CAM","CAS","CMP","ESC","ETR",
-                      "FAV","FAZ","FLT","ILH","JRD","LAD","LRG","LTM","LUG",
-                      "MRR","PQE","PAS","PRA","PRC","REC","ROD","RUA","SRV",
-                      "TRV","VIA","VIL"],
-      autoform: {
-        options: [
-          {label: "ALAMEDA"	,value: "ALM"},
-          {label: "AVENIDA"	,value: "AVN"},
-          {label: "BECO"	,value: "BEC"},
-          {label: "BOULEVARD"	,value: "BLV"},
-          {label: "CAMINHO"	,value: "CAM"},
-          {label: "CAIS"	,value: "CAS"},
-          {label: "CAMPO"	,value: "CMP"},
-          {label: "ESCADA"	,value: "ESC"},
-          {label: "ESTRADA"	,value: "ETR"},
-          {label: "FAVELA"	,value: "FAV"},
-          {label: "FAZENDA"	,value: "FAZ"},
-          {label: "FLORESTA"	,value: "FLT"},
-          {label: "ILHA"	,value: "ILH"},
-          {label: "JARDIM"	,value: "JRD"},
-          {label: "LADEIRA"	,value: "LAD"},
-          {label: "LARGO"	,value: "LRG"},
-          {label: "LOTEAMENTO"	,value: "LTM"},
-          {label: "LUGAR"	,value: "LUG"},
-          {label: "MORRO"	,value: "MRR"},
-          {label: "PARQUE"	,value: "PQE"},
-          {label: "PASSEIO"	,value: "PAS"},
-          {label: "PRAIA"	,value: "PRA"},
-          {label: "PRAÇA"	,value: "PRC"},
-          {label: "RECANTO"	,value: "REC"},
-          {label: "RODOVIA"	,value: "ROD"},
-          {label: "RUA"	,value: "RUA"},
-          {label: "SERVIDAO"	,value: "SRV"},
-          {label: "TRAVESSA"	,value: "TRV"},
-          {label: "VIA"	,value: "VIA"},
-          {label: "VILA"	,value: "VIL"}
-        ]
-      }
-    },
-   "endereco.logradouro" : {
-     type: String,
-     optional: false
-   },
-   "endereco.bairro": {
-     type: String,
-     optional: true
-   },
-   "endereco.estado": {
-     type: String
-   },
-   "endereco.cidade": {
-     type: String
-   },
-   "endereco.numero": {
-     type: String
    }
 }));
 
