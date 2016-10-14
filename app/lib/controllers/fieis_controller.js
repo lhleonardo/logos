@@ -1,4 +1,5 @@
 FieisController = RouteController.extend({
+  layoutTemplate: 'MasterLayout',
 
   subscriptions: function() {
     if (Roles.userIsInRole(Meteor.userId(), ['admin'],

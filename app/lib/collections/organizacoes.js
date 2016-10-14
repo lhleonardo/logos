@@ -10,35 +10,38 @@ Organizacoes.attachSchema(new SimpleSchema({
     type: String,
     allowedValues: ['PAROQUIA', 'DIOCESE', 'COMUNIDADE'],
     label: 'Tipo de Organização',
+    optional: false,
     autoform: {
-      type: 'select2',
-      afFieldInput: {
-        multiple: false
-      },
-      options: [
-        {label: "Diocese", value: "DIOCESE"},
-        {label: "Paróquia", value: "PAROQUIA"},
-        {label: "Comunidade", value: "COMUNIDADE"}
-      ]
+      options: function () {
+        return [
+          {label: "Diocese", value: "DIOCESE"},
+          {label: "Paróquia", value: "PAROQUIA"},
+          {label: "Comunidade", value: "COMUNIDADE"}
+        ];
+      }
     }
   },
   dataFundacao: {
-    type: Date,
+    type: "datetime-local",
     label: 'Data de Fundação',
     optional: true,
     autoform: {
-      afFieldInput: {
-        type: "bootstrap-datepicker"
+      type: 'masked-input',
+      mask: "00/00/0000",
+      maskOptions: {
+      	placeholder: "__/__/____"
       }
     }
   },
   dataFixacao: {
-    type: Date,
+    type: 'datetime-local',
     label: 'Data de Fixação',
     optional: true,
     autoform: {
-      afFieldInput: {
-        type: "bootstrap-datepicker"
+      type: 'masked-input',
+      mask: "00/00/0000",
+      maskOptions: {
+      	placeholder: "__/__/____"
       }
     }
   },
@@ -47,9 +50,8 @@ Organizacoes.attachSchema(new SimpleSchema({
     label: "CNPJ",
     max: 18,
     min: 18,
-    optional: false,
+    optional: true,
     regEx: /\d{2}.?\d{3}.?\d{3}\/?\d{4}-?\d{2}/g,
-		optional: false,
 		autoform: {
 			type: "masked-input",
       mask: "00.000.000/0000-00",
@@ -92,10 +94,7 @@ Organizacoes.attachSchema(new SimpleSchema({
     optional: true,
     label: 'Organização de coordenação superior',
     autoform: {
-			type: "select2",
-			afFieldInput: {
-        multiple: false
-      },
+			type: "typeahead",
 			options: function () {
 				let valores = [];
 				let organizacoes = Organizacoes.find({$or: [{tipo: 'PAROQUIA'}, {tipo: 'DIOCESE'}]});
@@ -107,67 +106,8 @@ Organizacoes.attachSchema(new SimpleSchema({
 		}
   },
   endereco: {
-    type: Object,
+    type: SchemaEndereco,
     optional: false
-  },
-   "endereco.tipoLogradouro": {
-     type: String,
-     optional: false,
-     allowedValues: ["ALM","AVN","BEC","BLV","CAM","CAS","CMP","ESC","ETR",
-                     "FAV","FAZ","FLT","ILH","JRD","LAD","LRG","LTM","LUG",
-                     "MRR","PQE","PAS","PRA","PRC","REC","ROD","RUA","SRV",
-                     "TRV","VIA","VIL"],
-     autoform: {
-       options: [
-         {label: "ALAMEDA"	,value: "ALM"},
-         {label: "AVENIDA"	,value: "AVN"},
-         {label: "BECO"	,value: "BEC"},
-         {label: "BOULEVARD"	,value: "BLV"},
-         {label: "CAMINHO"	,value: "CAM"},
-         {label: "CAIS"	,value: "CAS"},
-         {label: "CAMPO"	,value: "CMP"},
-         {label: "ESCADA"	,value: "ESC"},
-         {label: "ESTRADA"	,value: "ETR"},
-         {label: "FAVELA"	,value: "FAV"},
-         {label: "FAZENDA"	,value: "FAZ"},
-         {label: "FLORESTA"	,value: "FLT"},
-         {label: "ILHA"	,value: "ILH"},
-         {label: "JARDIM"	,value: "JRD"},
-         {label: "LADEIRA"	,value: "LAD"},
-         {label: "LARGO"	,value: "LRG"},
-         {label: "LOTEAMENTO"	,value: "LTM"},
-         {label: "LUGAR"	,value: "LUG"},
-         {label: "MORRO"	,value: "MRR"},
-         {label: "PARQUE"	,value: "PQE"},
-         {label: "PASSEIO"	,value: "PAS"},
-         {label: "PRAIA"	,value: "PRA"},
-         {label: "PRAÇA"	,value: "PRC"},
-         {label: "RECANTO"	,value: "REC"},
-         {label: "RODOVIA"	,value: "ROD"},
-         {label: "RUA"	,value: "RUA"},
-         {label: "SERVIDAO"	,value: "SRV"},
-         {label: "TRAVESSA"	,value: "TRV"},
-         {label: "VIA"	,value: "VIA"},
-         {label: "VILA"	,value: "VIL"}
-       ]
-     }
-   },
-  "endereco.logradouro" : {
-    type: String,
-    optional: false
-  },
-  "endereco.bairro": {
-    type: String,
-    optional: true
-  },
-  "endereco.estado": {
-    type: String
-  },
-  "endereco.cidade": {
-    type: String
-  },
-  "endereco.numero": {
-    type: String
   }
 }));
 

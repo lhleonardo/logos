@@ -34,3 +34,8 @@ session
 check
 rzymek:moment-locale-pt-br
 aldeed:autoform-bs-datepicker
+comerc:autoform-typeahead
+comerc:bs-typeahead
+aldeed:autoform-select2
+natestrauser:select2
+rajit:bootstrap3-datepicker

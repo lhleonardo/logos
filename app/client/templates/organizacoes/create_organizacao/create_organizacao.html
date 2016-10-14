@@ -1,0 +1,47 @@
+<template name="CreateOrganizacao">
+  <section class="content-header">
+    <h1>
+      <a href="{{pathFor 'fieis.list'}}" class="btn btn-warning">
+        <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
+      </a>
+      Cadastrar Organização
+      <small>Cadastrar novas Dioceses, Paróquias ou Comunidades no sistema.</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
+      <li class="active">Cadastro de Organizações</li>
+    </ol>
+  </section>
+
+  <section class="content">
+    <!-- {{> quickForm collection="Fieis" id="insertFielForm" type="insert" buttonContent="Salvar"}} -->
+    {{#autoForm id="insertOrganizacaoForm" type="insert" collection="Organizacoes"}}
+      {{> afQuickField name="nome"}}
+      {{> afQuickField name="tipo"}}
+      {{#if afFieldValueIs name="tipo" value="DIOCESE"}}
+        {{> afQuickField name="dataFundacao"}}
+        {{> afQuickField name="dataFixacao"}}
+        {{> afQuickField name="cnpj"}}
+        {{> afQuickField name="ie"}}
+        {{> afQuickField name="dependentes"}}
+      {{/if}}
+      {{#if afFieldValueIs name="tipo" value="PAROQUIA"}}
+        {{> afQuickField name="dataFundacao"}}
+        {{> afQuickField name="dataFixacao"}}
+        {{> afQuickField name="cnpj"}}
+        {{> afQuickField name="ie"}}
+        {{> afQuickField name="dependentes"}}
+        {{> afQuickField name="coordenadora"}}
+      {{/if}}
+      {{#if afFieldValueIs name="tipo" value="COMUNIDADE"}}
+        {{> afQuickField name="coordenadora"}}
+        {{> afQuickField name="dataFundacao"}}
+        {{> afQuickField name="dataFixacao"}}
+      {{/if}}
+      {{> afQuickField name="endereco"}}
+      <div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    {{/autoForm}}
+  </section>
+</template>
