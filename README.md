@@ -20,15 +20,8 @@ Pré-requisitos
  2. `cd logos`
  3. Se possuir o Iron-cli: `iron run`
  4. Se não possuir o iron-cli: `cd app` e depois `meteor`
-
-
 ----------
-
-
 ## Lance Issues e contribua!
-
 Agradeço pela ajuda, para contatar-me basta lançar issues ou enviar um e-mail para [lhleonardo05@gmail.com]()
-
-
 ----------
-## Obrigado! ##
+## Pull Requests serão avaliados. ##
