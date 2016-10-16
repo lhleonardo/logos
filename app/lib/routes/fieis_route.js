@@ -13,7 +13,7 @@ Router.route("fieis/create", {
 });
 
 /*Edit*/
-Router.route('fieis/edit/:_id', {
+Router.route('fieis/:_id/edit', {
   name: 'fieis.edit',
   controller: 'FieisController',
   action: 'edit'

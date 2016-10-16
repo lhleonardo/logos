@@ -1,20 +1,22 @@
-<template name="CreateOrganizacao">
+<template name="ViewOrganizacao">
   <section class="content-header">
     <h1>
-      <a href="{{pathFor 'fieis.list'}}" class="btn btn-warning">
+      <a href="{{pathFor 'organizacoes.list'}}" class="btn btn-warning">
         <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
       </a>
-      Cadastrar Organização
-      <small>Cadastrar novas Dioceses, Paróquias ou Comunidades no sistema.</small>
+
+      {{nome}}
+      <small>Aqui estão as informações do registro</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
-      <li class="active">Cadastro de Organizações</li>
+      <li><a href="{{pathFor 'organizacoes.list'}}"><i class="fa fa-list-alt"></i>Listagem de Fieis</a></li>
+      <li class="active"><a href="{{pathFor 'organizacoes.view' _id}}"><i class="fa fa-male">{{nome}}</i></a></li>
     </ol>
   </section>
 
   <section class="content">
-    {{#autoForm id="insertOrganizacaoForm" type="insert" collection="Organizacoes"}}
+    {{#autoForm id="viewOrganizacaoForm" type="disabled" doc=this collection="Organizacoes"}}
       {{> afQuickField name="nome"}}
       {{> afQuickField name="tipo"}}
       {{#if afFieldValueIs name="tipo" value="DIOCESE"}}
@@ -38,9 +40,9 @@
         {{> afQuickField name="dataFixacao"}}
       {{/if}}
       {{> afQuickField name="endereco"}}
-      <div>
-        <button type="submit" class="btn btn-primary">Salvar</button>
-      </div>
     {{/autoForm}}
+    <a href="{{pathFor 'organizacoes.list'}}" class="btn btn-warning">
+      <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
+    </a>
   </section>
 </template>

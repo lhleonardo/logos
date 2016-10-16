@@ -17,6 +17,13 @@ OrganizacoesController = RouteController.extend({
     this.render('CreateOrganizacao', {});
   },
 
+  edit: function () {
+    this.render("UpdateOrganizacao", {});
+  },
+
+  view: function functionName() {
+    this.render("ViewOrganizacao", {});
+  },
   // Subscriptions or other things we want to "wait" on. This also
   // automatically uses the loading hook. That's the only difference between
   // this option and the subscriptions option above.
@@ -32,6 +39,7 @@ OrganizacoesController = RouteController.extend({
   // return Posts.findOne({_id: this.params._id});
 
   data: function () {
+    return Organizacoes.findOne({_id: this.params._id});
   },
 
   // You can provide any of the hook options

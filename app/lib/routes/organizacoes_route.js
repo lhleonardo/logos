@@ -11,3 +11,15 @@ Router.route('/organizacoes', {
   controller: 'OrganizacoesController',
   action: 'list'
 });
+
+Router.route("/organizacoes/:_id/edit", {
+  name: 'organizacoes.edit',
+  controller: "OrganizacoesController",
+  action: 'edit'
+});
+
+Router.route('/organizacoes/:_id', {
+  name: "organizacoes.view",
+  controller: "OrganizacoesController",
+  action: 'view'
+});
