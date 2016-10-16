@@ -49,7 +49,6 @@ Organizacoes.attachSchema(new SimpleSchema({
     type: String,
     label: "CNPJ",
     max: 18,
-    min: 18,
     optional: true,
     regEx: /\d{2}.?\d{3}.?\d{3}\/?\d{4}-?\d{2}/g,
 		autoform: {
@@ -81,7 +80,8 @@ Organizacoes.attachSchema(new SimpleSchema({
       },
 			options: function () {
 				let valores = [];
-				let organizacoes = Organizacoes.find({$or: [{tipo: 'PAROQUIA'}, {tipo: 'COMUNIDADE'}]});
+				let organizacoes = Organizacoes.find({$or: [{tipo: 'PAROQUIA'},
+                            {tipo: 'COMUNIDADE'}]});
 				organizacoes.forEach((organizacao)=> {
 					valores.push({label: organizacao.nome, value: organizacao._id});
 				});
@@ -94,7 +94,7 @@ Organizacoes.attachSchema(new SimpleSchema({
     optional: true,
     label: 'Organização de coordenação superior',
     autoform: {
-			type: "typeahead",
+			type: "select2",
 			options: function () {
 				let valores = [];
 				let organizacoes = Organizacoes.find({$or: [{tipo: 'PAROQUIA'}, {tipo: 'DIOCESE'}]});

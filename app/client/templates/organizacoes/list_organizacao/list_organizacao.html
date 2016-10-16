@@ -1,0 +1,49 @@
+<template name="ListOrganizacao">
+  <section class="content-header">
+    <h1>
+      Relação de Organizações
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
+      <li class="active"> <a href="{{pathFor 'organizacoes.list'}}"><i class="fa fa-list-alt"></i>Listagem de Organizações</a></li>
+    </ol>
+  </section>
+
+  <section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">
+                Aqui você encontra todos os registros cadastrados.
+                <a href="{{pathFor 'organizacoes.create'}}" role="button" class="btn btn-primary">Criar novo</a>
+              </h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+                  <div class="col-sm-12" style="margin-bottom: 1%">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    {{> tabular table=TabularTables.Organizacoes
+                      class="table table-hover"}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+  </section>
+</template>
+
+<template name="organizacaoOperationCell">
+  <a href="{{pathFor 'organizacoes.edit' _id}}" class="fa fa-edit"></a>
+  <a href="{{pathFor 'organizacoes.view' _id}}" class="fa fa-eye"></a>
+</template>

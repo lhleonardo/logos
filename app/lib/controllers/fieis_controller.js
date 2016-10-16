@@ -2,7 +2,7 @@ FieisController = RouteController.extend({
   layoutTemplate: 'MasterLayout',
 
   subscriptions: function() {
-    if (Roles.userIsInRole(Meteor.userId(), ['admin'],
+    if (Roles.userIsInRole(Meteor.userId(), ['admin', 'secretaria'],
         Roles.GLOBAL_GROUP)){
         console.log("subscribing...");
         this.subscribe("fieis");
