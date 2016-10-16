@@ -111,6 +111,66 @@ Organizacoes.attachSchema(new SimpleSchema({
   }
 }));
 
+Organizacoes.after.insert(function (userId, doc) {
+  if (_.has(doc, "coordenadora")) {
+    // adiciona 'this' aos dependentes da coordenadora
+    var coordenadora = Organizacoes.findOne({_id: doc.coordenadora});
+    if (! _.has(coordenadora, "dependentes")) {
+      coordenadora.dependentes = [];
+    }
+    console.log("Eu sou: "+ doc._id);
+    coordenadora.dependentes.push(doc._id);
+    console.log("dependentes da coordenadora: \n");
+    coordenadora.dependentes.forEach(function (dependente) {
+      console.log("Dependente : " + dependente);
+    });
+
+    Organizacoes.update({_id: doc.coordenadora}, {$set:{
+      dependentes: coordenadora.dependentes
+    }});
+  }
+  if (_.has(doc, "dependentes")) {
+    // adiciona 'this' ao coordenadora dos dependentes
+    doc.dependentes.forEach(function(dependente){
+
+      Organizacoes.update({_id:dependente._id}, {$set:{
+        coordenadora: doc._id
+      }});
+
+    });
+  }
+});
+
+Organizacoes.after.update(function(userId, doc, fieldNames, modifier){
+  if (_.has(doc, "coordenadora")) {
+    // adiciona 'this' aos dependentes da coordenadora
+    var coordenadora = Organizacoes.findOne({_id: doc.coordenadora});
+    if (! _.contains(coordenadora.dependentes, doc._id)) {
+        coordenadora.dependentes.push(doc._id);
+        Organizacoes.update({_id: coordenadora._id}, {$set:{
+          depedentes: coordenadora.dependentes
+        }});
+    }
+  }
+
+  if (_.has(doc, "dependentes")) {
+    var dependentesValidos = _.map(Organizacoes.find({"coordenadora": doc._id}),
+                              function(i){
+                                return i;
+                              });
+    var difference = _.difference(doc.dependentes,dependentesValidos);
+    if (! _.isEmpty(difference)){
+        difference.forEach(function (item) {
+          Organizacoes.update({_id: item}, {$set:{
+            coordenadora: doc._id
+          }});
+
+        });
+    }
+  }
+
+});
+
 if (Meteor.isServer) {
   Organizacoes.allow({
     insert: function (userId, doc) {
