@@ -75,11 +75,104 @@ Fieis.attachSchema(new SimpleSchema({
       ]
     }
   },
-   endereco: {
+  detalhes: {
+    type: Object,
+    optional: false,
+  },
+  'detalhes.statusCivil': {
+    type: String,
+    optional: false,
+    allowedValues: ['SOLTEIRO', 'CASADO', 'VIUVO', 'DIVORCIADO', 'COMPANHEIRO', 'SEPARADO'],
+    autoform: {
+      type: 'select2',
+      options: [
+        {label: "Casado(a)", value: "CASADO"},
+        {label: "Companheiro(a)", value: "COMPANHEIRO"},
+        {label: "Divorciado(a)", value: "DIVORCIADO"},
+        {label: "Separado(a)", value: "SEPARADO"},
+        {label: "Solteiro(a)", value: "SOLTEIRO"},
+        {label: "Viúvo(a)", value: "VIUVO"}
+      ]
+    }
+  },
+  'detalhes.conjuge': {
+    type: Object,
+    optional: true,
+    label: "Informações de Cônjuge"
+  },
+  "detalhes.conjuge.tipo": {
+    type: String,
+    label: "Tipo de Cônjuge",
+    allowedValues: ["VARAO", "VIRAGO"],
+    optional: false,
+    autoform: {
+      options: [
+        {label: "Varão  (homem)", value: "VARAO"},
+        {label: "Virago (mulher)", value: "VIRAGO"}
+      ]
+    }
+  },
+  "detalhes.conjuge.nome": {
+    type: String,
+    optional: false,
+    label: "Nome da pessoa conjuge"
+  },
+  'detalhes.dependentes': {
+    type: Array,
+    optional: true,
+    label: "Dependentes deste fiel",
+    min: 0
+  },
+  "detalhes.dependentes.$": {
+    type: Object,
+    optional: true,
+    label: "Dependente"
+  },
+  "detalhes.dependentes.$.tipo": {
+    label: "Tipo de Dependente",
+    type: String,
+    optional: false,
+    allowedValues: ['MAE', 'PAI', 'IRMAO', 'IRMA', 'AVOM', 'AVOF', 'OUTRO'],
+    autoform: {
+      type: "select2",
+      options: [
+        {label: "Mãe", value: 'MAE'},
+        {label: "Pai", value: "PAI"},
+        {label: "Irmão", value: "IRMAO"},
+        {label: "Irmã", value: "IRMA"},
+        {label: "Avó", value: "AVOM"},
+        {label: "Avô", value: "AVOF"},
+        {label: "Outro", value: "OUTRO"}
+      ]
+    }
+  },
+  "detalhes.dependentes.$.nome": {
+    type: String,
+    optional: false,
+    label: "Nome do dependente"
+  },
+  "detalhes.dependentes.$.dataNascimento" : {
+    label: "Data de Nascimento (DD/MM/YYYY)",
+    type: "datetime-local",
+    optional: false,
+    autoform: {
+      type: 'masked-input',
+      mask: "00/00/0000",
+      maskOptions: {
+        placeholder: "__/__/____"
+      },
+    }
+  },
+  endereco: {
      type: SchemaEndereco,
+     label: "Localização e Moradia",
      optional: false
-   }
+  }
 }));
+
+SchemaDetalhes = new SimpleSchema({
+
+});
 
 if (Meteor.isServer) {
   Fieis.allow({

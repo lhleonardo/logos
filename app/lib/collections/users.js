@@ -1,6 +1,5 @@
 Schema = {};
 
-
 Schema.UserProfile = new SimpleSchema({
   fiel: {
     label: "Dono da conta",
