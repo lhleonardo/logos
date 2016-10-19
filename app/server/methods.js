@@ -20,5 +20,8 @@ Meteor.methods({
     let obj = _.find(roles, function(item){ return item.value == role});
     console.log(obj.label);
     return obj.label;
+  },
+  'getUser': function(id) {
+    return Meteor.users.findOne({_id: id});
   }
 });

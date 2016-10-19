@@ -8,24 +8,24 @@ UsersController = RouteController.extend({
 
   subscriptions: function() {
     if (Roles.userIsInRole(Meteor.user(), ['admin'], Roles.GLOBAL_GROUP)) {
-      this.subscribe('organizacoes');
+      this.subscribe('users');
     }
   },
 
   create: function() {
-    this.render('CreateUser', {});
+    this.render('CreateUsuario', {});
   },
 
   edit: function() {
-    this.render('UpdateUser', {});
+    this.render('UpdateUsuario', {});
   },
 
   list: function() {
-    this.render('ListUser', {});
+    this.render('ListUsuario', {});
   },
 
   view: function () {
-    this.render('ViewUser', {});
+    this.render('ViewUsuario', {});
   },
 
   // A data function that can be used to automatically set the data context for
@@ -35,7 +35,7 @@ UsersController = RouteController.extend({
   // return Posts.findOne({_id: this.params._id});
 
   data: function () {
-    return Meteor.users().find({_id : this.params._id});
+    return Meteor.users.find({_id : this.params._id});
   },
 
   // You can provide any of the hook options

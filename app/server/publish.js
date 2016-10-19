@@ -6,3 +6,7 @@ Meteor.publish('fieis', function () {
 Meteor.publish('organizacoes', function () {
   return Organizacoes.find();
 });
+
+Meteor.publish('users', function () {
+  return Meteor.users.find();
+});
