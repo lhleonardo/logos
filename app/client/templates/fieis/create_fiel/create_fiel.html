@@ -4,9 +4,8 @@
       <a href="{{pathFor 'fieis.list'}}" class="btn btn-warning">
         <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
       </a>
-      Cadastrar Fiel
-      <small>Cadastrar novos fiéis no sistema, sejam eles ministros, padres,
-        dizimistas, contribuintes, etc.</small>
+      Novo Fiel
+      <small>Cadastrar novos fiéis no sistema.</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -15,6 +14,34 @@
   </section>
 
   <section class="content">
-    {{> quickForm collection="Fieis" id="insertFielForm" type="insert" buttonContent="Salvar"}}
+    <!-- {{> quickForm collection="Fieis" id="insertFielForm" type="insert" buttonContent="Salvar"}} -->
+    {{#autoForm collection="Fieis" id="insertFielForm" type="insert"}}
+        {{> afQuickField name="nome"}}
+        {{> afQuickField name="tipo"}}
+        {{> afQuickField name="sexo"}}
+        {{> afQuickField name="dataNascimento"}}
+        {{> afQuickField name="cpf"}}
+        {{> afQuickField name="rg"}}
+        {{> afQuickField name="status"}}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Detalhes</h3>
+          </div>
+          <div class="panel-body">
+            {{>afQuickField name="detalhes.statusCivil"}}
+            {{#if afFieldValueIs name="detalhes.statusCivil" value="CASADO"}}
+              {{> afQuickField name="detalhes.conjuge"}}
+            {{/if}}
+            {{#if afFieldValueIs name="detalhes.statusCivil" value="COMPANHEIRO"}}
+              {{> afQuickField name="detalhes.conjuge"}}
+            {{/if}}
+            {{> afQuickField name="detalhes.dependentes"}}
+          </div>
+        </div>
+        {{> afQuickField name="endereco"}}
+        <div>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    {{/autoForm}}
   </section>
 </template>

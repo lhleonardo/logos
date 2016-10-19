@@ -5,7 +5,6 @@
         <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
       </a>
       Editar - {{nome}}
-      <small>Atualizar os dados informados no registro</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -16,11 +15,33 @@
   </section>
 
   <section class="content">
-    {{> quickForm
-        collection="Fieis"
-        id="updateFielForm"
-        doc=this
-        type="update"
-        buttonContent="Atualizar"}}
+        {{#autoForm doc=this collection="Fieis" id="updateFielForm" type="update"}}
+            {{> afQuickField name="nome"}}
+            {{> afQuickField name="tipo"}}
+            {{> afQuickField name="sexo"}}
+            {{> afQuickField name="dataNascimento"}}
+            {{> afQuickField name="cpf"}}
+            {{> afQuickField name="rg"}}
+            {{> afQuickField name="status"}}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Detalhes</h3>
+              </div>
+              <div class="panel-body">
+                {{>afQuickField name="detalhes.statusCivil"}}
+                {{#if afFieldValueIs name="detalhes.statusCivil" value="CASADO"}}
+                  {{> afQuickField name="detalhes.conjuge"}}
+                {{/if}}
+                {{#if afFieldValueIs name="detalhes.statusCivil" value="COMPANHEIRO"}}
+                  {{> afQuickField name="detalhes.conjuge"}}
+                {{/if}}
+                {{> afQuickField name="detalhes.dependentes"}}
+              </div>
+            </div>
+            {{> afQuickField name="endereco"}}
+            <div>
+              <button type="submit" class="btn btn-primary">Atualizar</button>
+            </div>
+        {{/autoForm}}
   </section>
 </template>
