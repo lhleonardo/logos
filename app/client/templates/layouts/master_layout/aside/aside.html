@@ -69,17 +69,10 @@
 <template name="SideGerenciamento">
   <li class="header">ADMINISTRAÇÃO</li>
 
-  <li class="treeview">
-    <a href="#">
-      <i class="fa fa-link"></i>
+  <li>
+    <a href="{{pathFor 'users.list'}}">
+      <i class="fa fa-users"></i>
       <span>Usuários</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
     </a>
-    <ul class="treeview-menu">
-      <li><a href="{{pathFor 'users.create'}}">Novo Usuário</a></li>
-      <li><a href="{{pathFor 'users.list'}}">Visualizar todos</a></li>
-    </ul>
   </li>
 </template>
