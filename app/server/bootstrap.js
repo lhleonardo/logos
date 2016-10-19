@@ -5,7 +5,8 @@ Meteor.startup(function () {
       email: "lhleonardo@hotmail.com",
       password: "admin",
       profile: {
-        fiel: "jMij7EgLGRbcQiaM3"
+        fiel: '5q4srYEFPy528Pr9d'
+        
       }
     };
     var id;
