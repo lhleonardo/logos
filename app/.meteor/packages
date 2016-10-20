@@ -22,9 +22,11 @@ iron:router
 aldeed:autoform
 aldeed:collection2
 aldeed:tabular
+aldeed:delete-button
+aldeed:autoform-bs-datepicker
+aldeed:autoform-select2
 alanning:roles
 twbs:bootstrap
-momentjs:moment
 fortawesome:fontawesome
 accounts-ui
 accounts-password
@@ -33,10 +35,9 @@ mfactory:admin-lte
 session
 check
 rzymek:moment-locale-pt-br
-aldeed:autoform-bs-datepicker
 comerc:autoform-typeahead
 comerc:bs-typeahead
-aldeed:autoform-select2
 natestrauser:select2
 rajit:bootstrap3-datepicker
 matb33:collection-hooks
+momentjs:moment
