@@ -4,3 +4,5 @@ Router.configure({
   loadingTemplate: 'Loading',
   notFoundTemplate: 'NotFound'
 });
+
+Router.route('/NotFound');
