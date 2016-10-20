@@ -42,6 +42,7 @@
       {{> afQuickField name="endereco"}}
       <div>
         <button type="submit" class="btn btn-primary">Atualizar</button>
+        {{#quickRemoveButton class="btn btn-danger" collection="Organizacoes" _id=this._id}}Excluir este registro{{/quickRemoveButton}}
       </div>
     {{/autoForm}}
   </section>
