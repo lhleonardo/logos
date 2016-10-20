@@ -14,6 +14,15 @@ FieisController = RouteController.extend({
   },
 
   list: function () {
+    if (!Meteor.userId()) {
+      this.redirect('login');
+      this.stop();
+    }
+
+    if (Roles.userIsInRole(Meteor.user(), ['admin', 'secretaria'], Roles.GLOBAL_GROUP) == false) {
+      console.log("Não autorizado");
+      this.render('Unauthorized');
+    }
     this.render('ListFiel', {});
   },
 
@@ -30,13 +39,15 @@ FieisController = RouteController.extend({
   },
 
   onBeforeAction: function () {
+    console.log(Roles.userIsInRole(Meteor.user(), ['admin', 'secretaria'], Roles.GLOBAL_GROUP));
     if (!Meteor.userId()) {
       this.redirect('login');
       this.stop();
     }
 
     if (Roles.userIsInRole(Meteor.user(), ['admin', 'secretaria'], Roles.GLOBAL_GROUP) == false) {
-      this.render('Unauthorized');
+      this.redirect('NotFound');
+      this.stop();
     }
     this.next();
   },
