@@ -25,19 +25,22 @@ Meteor.methods({
     return Meteor.users.findOne({_id: id});
   },
   'addUser': function(user) {
-    check(user, SchemaUsuarios);
+    console.log(user.email);
+    console.log(user.senha);
+    console.log(user.role);
+    console.log(user.fiel);
     var created = Accounts.createUser({
       email: user.email,
-      password: user.password,
+      password: user.senha,
       profile: {
-        fiel: user.fiel._id
+        fiel: user.fiel
       }
     });
 
     if (created) {
       Roles.addUsersToRoles(created, user.role, Roles.GLOBAL_GROUP);
     } else {
-      
+
     }
 
 
