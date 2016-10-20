@@ -8,6 +8,7 @@ UsersController = RouteController.extend({
 
   subscriptions: function() {
     if (Roles.userIsInRole(Meteor.user(), ['admin'], Roles.GLOBAL_GROUP)) {
+      this.subscribe('fieis');
       this.subscribe('users');
     }
   },
