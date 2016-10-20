@@ -23,5 +23,23 @@ Meteor.methods({
   },
   'getUser': function(id) {
     return Meteor.users.findOne({_id: id});
+  },
+  'addUser': function(user) {
+    check(user, SchemaUsuarios);
+    var created = Accounts.createUser({
+      email: user.email,
+      password: user.password,
+      profile: {
+        fiel: user.fiel._id
+      }
+    });
+
+    if (created) {
+      Roles.addUsersToRoles(created, user.role, Roles.GLOBAL_GROUP);
+    } else {
+      
+    }
+
+
   }
 });
