@@ -1,3 +1,19 @@
 <template name="CreateUsuario">
-  
+  <section class="content-header">
+    <h1>
+      <a href="{{pathFor 'users.list'}}" class="btn btn-warning">
+        <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
+      </a>
+      Novo Usuário
+      <small>Cadastrar novos usuários no sistema.</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
+      <li class="active">Cadastro de Usuários</li>
+    </ol>
+  </section>
+
+  <section class="content">
+    {{> quickForm id="insertUserForm" type="method" meteormethod="addUser" schema="SchemaUsuarios" buttonContent="Enviar"}}
+  </section>
 </template>
