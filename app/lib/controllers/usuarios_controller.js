@@ -54,7 +54,8 @@ UsersController = RouteController.extend({
     }
 
     if (Roles.userIsInRole(Meteor.user(), ['admin'], Roles.GLOBAL_GROUP) == false) {
-      this.render('Unauthorized');
+      this.redirect('Unauthorized');
+      this.stop();
     }
     this.next();
   },

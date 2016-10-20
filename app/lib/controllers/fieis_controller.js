@@ -14,15 +14,6 @@ FieisController = RouteController.extend({
   },
 
   list: function () {
-    if (!Meteor.userId()) {
-      this.redirect('login');
-      this.stop();
-    }
-
-    if (Roles.userIsInRole(Meteor.user(), ['admin', 'secretaria'], Roles.GLOBAL_GROUP) == false) {
-      console.log("Não autorizado");
-      this.render('Unauthorized');
-    }
     this.render('ListFiel', {});
   },
 
@@ -46,7 +37,7 @@ FieisController = RouteController.extend({
     }
 
     if (Roles.userIsInRole(Meteor.user(), ['admin', 'secretaria'], Roles.GLOBAL_GROUP) == false) {
-      this.redirect('NotFound');
+      this.redirect('Unauthorized');
       this.stop();
     }
     this.next();

@@ -57,7 +57,8 @@ OrganizacoesController = RouteController.extend({
     }
 
     if (Roles.userIsInRole(Meteor.user(), ['admin', 'secretaria'], Roles.GLOBAL_GROUP) == false) {
-      this.render('Unauthorized');
+      this.redirect('Unauthorized');
+      this.stop();
     }
     this.next();
   },
