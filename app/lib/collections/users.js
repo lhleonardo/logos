@@ -1,5 +1,49 @@
 Schema = {};
 
+SchemaUsuarios = new SimpleSchema({
+  email: {
+      type: String,
+      optional: false,
+      label: "E-mail"
+  },
+  senha: {
+    type: String,
+    optional: false,
+    label: 'Senha'
+  },
+  role: {
+    label: "Perfil de Usuário",
+    type: String,
+    allowedValues: ["admin", 'secretaria', 'financeiro', 'contabilidade'],
+    autoform: {
+      options: [
+        {label: "Administrador", value: "admin"},
+        {label: "Contabilidade", value: "contabilidade"},
+        {label: "Financeiro", value: "financeiro"},
+        {label: "Secretaria", value: "secretaria"}
+      ]
+    }
+  },
+  fiel: {
+    label: "Dono da conta",
+      type: String,
+      autoform: {
+        type: "select2",
+        options: function () {
+          let valores = [];
+          let pessoas = Fieis.find();
+          pessoas.forEach((pessoa)=> {
+            let userCount = Meteor.users.find({"profile.fiel": pessoa._id}).count();
+            if (userCount == 0) {
+              valores.push({label: pessoa.nome, value: pessoa._id});
+            }
+          });
+          return valores;
+        }
+      }
+  }
+});
+
 Schema.UserProfile = new SimpleSchema({
   fiel: {
     label: "Dono da conta",
@@ -10,8 +54,9 @@ Schema.UserProfile = new SimpleSchema({
           let valores = [];
           let pessoas = Fieis.find();
           pessoas.forEach((pessoa)=> {
-            if (!Meteor.users.findOne({_id: pessoa._id})) {
-                valores.push({label: pessoa.nome, value: pessoa._id});
+            let user = Meteor.users.findOne({_id: pessoa._id});
+            if (user) {
+              valores.push({label: pessoa.nome, value: pessoa._id});
             }
           });
           return valores;
@@ -23,12 +68,8 @@ Schema.UserProfile = new SimpleSchema({
 Schema.User = new SimpleSchema({
     username: {
         type: String,
-        // For accounts-password, either emails or username is required, but not both. It is OK to make this
-        // optional here because the accounts-password package does its own validation.
-        // Third-party login packages may not require either. Adjust this schema as necessary for your usage.
         optional: true
     },
-    // Make sure this services field is in your schema if you're using any of the accounts packages
     services: {
         type: Object,
         optional: true,
@@ -36,9 +77,6 @@ Schema.User = new SimpleSchema({
     },
     emails: {
         type: Array,
-        // For accounts-password, either emails or username is required, but not both. It is OK to make this
-        // optional here because the accounts-password package does its own validation.
-        // Third-party login packages may not require either. Adjust this schema as necessary for your usage.
         optional: true
     },
     "emails.$": {
@@ -63,7 +101,6 @@ Schema.User = new SimpleSchema({
         optional: true,
         blackbox: true
     },
-    // In order to avoid an 'Exception in setInterval callback' from Meteor
     heartbeat: {
         type: Date,
         optional: true
