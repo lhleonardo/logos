@@ -1,5 +1,3 @@
-var roles = ['default', 'admin'];
-
 HomeController = RouteController.extend({
   layoutTemplate: 'MasterLayout',
   // A place to put your subscriptions
@@ -39,11 +37,7 @@ HomeController = RouteController.extend({
     if (!Meteor.userId()) {
       this.redirect('login');
     } else {
-      if (Roles.userIsInRole(Meteor.userId(), roles, Roles.GLOBAL_GROUP)) {
-        this.next();
-      } else {
-        this.render('Unauthorized');
-      }
+      this.next();
     }
   },
 

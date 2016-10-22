@@ -6,5 +6,4 @@ Router.configure({
 });
 
 Router.route('/NotFound');
-
 Router.route('/Unauthorized');

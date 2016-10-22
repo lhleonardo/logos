@@ -46,33 +46,39 @@
       <span>Dashboard</span>
     </a>
   </li>
-  <li>
-    <a href="{{pathFor 'fieis.list'}}">
-      <i class="fa fa-intersex"></i>
-      <span>Fieis</span>
-    </a>
-  </li>
-  <li>
-    <a href="{{pathFor 'organizacoes.list'}}">
-      <i class="fa fa-object-group"></i>
-      <span>Organizações</span>
-    </a>
-  </li>
-  <li>
-    <a href="{{pathFor 'contribuicoes.list'}}">
-      <i class="fa fa-link"></i>
-      <span>Contribuições</span>
-    </a>
-  </li>
+  {{#if isInRole 'admin,secretaria'}}
+    <li>
+      <a href="{{pathFor 'fieis.list'}}">
+        <i class="fa fa-intersex"></i>
+        <span>Fieis</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{pathFor 'organizacoes.list'}}">
+        <i class="fa fa-object-group"></i>
+        <span>Organizações</span>
+      </a>
+    </li>
+  {{/if}}
+  {{#if isInRole 'admin,financeiro,contabilidade'}}
+    <li>
+      <a href="{{pathFor 'contribuicoes.list'}}">
+        <i class="fa fa-link"></i>
+        <span>Contribuições</span>
+      </a>
+    </li>
+  {{/if}}
 </template>
 
 <template name="SideGerenciamento">
-  <li class="header">ADMINISTRAÇÃO</li>
+  {{#if isInRole 'admin'}}
+    <li class="header">ADMINISTRAÇÃO</li>
 
-  <li>
-    <a href="{{pathFor 'users.list'}}">
-      <i class="fa fa-users"></i>
-      <span>Usuários</span>
-    </a>
-  </li>
+    <li>
+      <a href="{{pathFor 'users.list'}}">
+        <i class="fa fa-users"></i>
+        <span>Usuários</span>
+      </a>
+    </li>
+  {{/if}}
 </template>

@@ -4,7 +4,6 @@ FieisController = RouteController.extend({
   subscriptions: function() {
     if (Roles.userIsInRole(Meteor.userId(), ['admin', 'secretaria'],
         Roles.GLOBAL_GROUP)){
-        console.log("subscribing...");
         this.subscribe("fieis");
     }
   },
@@ -30,17 +29,22 @@ FieisController = RouteController.extend({
   },
 
   onBeforeAction: function () {
-    console.log(Roles.userIsInRole(Meteor.user(), ['admin', 'secretaria'], Roles.GLOBAL_GROUP));
     if (!Meteor.userId()) {
       this.redirect('login');
       this.stop();
     }
 
-    if (Roles.userIsInRole(Meteor.user(), ['admin', 'secretaria'], Roles.GLOBAL_GROUP) == false) {
+    console.log("User: " + Meteor.user());
+    console.log("Roles: " + Meteor.user().roles);
+    var auth = Roles.userIsInRole(Meteor.user(), ['admin', 'secretaria'], Roles.GLOBAL_GROUP);
+    console.log("Autenticado? " + auth);
+
+    if (auth) {
+        this.next();
+    } else {
       this.redirect('Unauthorized');
       this.stop();
     }
-    this.next();
   },
 
   action: function () {

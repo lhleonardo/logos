@@ -6,7 +6,8 @@ var roles = [
   {label: "Financeiro", value: 'financeiro'},
   {label: "Pastoral", value: 'pastoral'},
   {label: "Contabilidade", value: "contabilidade"},
-  {label: "Convidado", value: "default"}
+  {label: "Convidado", value: "default"},
+  {label: "Secretaria", value: "secretaria"}
 ];
 
 Meteor.methods({
