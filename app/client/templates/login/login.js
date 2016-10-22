@@ -15,7 +15,6 @@ Template.Login.events({
   "submit #formLogin": function(event, template) {
     event.preventDefault();
     $("#alerta-erro").attr("hidden", "true");
-    alert("teste");
     var email = event.target.email.value;
     var senha = event.target.senha.value;
 
