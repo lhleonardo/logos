@@ -42,3 +42,8 @@
       </div>
   </section>
 </template>
+
+<template name="usersOperationCell">
+  <a href="{{pathFor 'users.edit' _id}}" class="fa fa-edit"></a>
+  <a href="{{pathFor 'users.view' _id}}" class="fa fa-eye"></a>
+</template>

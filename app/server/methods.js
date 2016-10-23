@@ -16,8 +16,8 @@ Meteor.methods({
     let nome = Fieis.findOne({_id: id}).nome;
     return nome;
   },
-  'getNameForRole': function () {
-    let role = Roles.getRolesForUser(Meteor.user(), Roles.GLOBAL_GROUP)[0];
+  'getNameForRole': function (user) {
+    let role = Roles.getRolesForUser((user) ? user : Meteor.user(), Roles.GLOBAL_GROUP)[0];
     let obj = _.find(roles, function(item){ return item.value == role});
     console.log(obj.label);
     return obj.label;

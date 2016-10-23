@@ -1,5 +1,14 @@
 TabularTables = {};
 
+var roles = [
+  {label: "Administrador", value: 'admin'},
+  {label: "Financeiro", value: 'financeiro'},
+  {label: "Pastoral", value: 'pastoral'},
+  {label: "Contabilidade", value: "contabilidade"},
+  {label: "Convidado", value: "default"},
+  {label: "Secretaria", value: "secretaria"}
+];
+
 TabularTables.Fieis = new Tabular.Table({
   name: "Fieis",
   collection: Fieis,
@@ -11,7 +20,7 @@ TabularTables.Fieis = new Tabular.Table({
     {data: "cpf", title: "CPF"},
     {data: "status", title: "Situação"},
     {
-      title: "Operações",
+      title: "Ações",
       tmpl: Meteor.isClient && Template.fielOperationCell
     }
   ]
@@ -27,21 +36,9 @@ TabularTables.Organizacoes = new Tabular.Table({
     {
       data: 'tipo',
       title: "Tipo de Organização"
-      // render: function (val, type, doc) {
-      //   if (val == "DIOCESE") {
-      //     return "Diocese";
-      //   }
-      //   if (val == "PAROQUIA") {
-      //     return "Paróquia";
-      //   }
-      //   if (val == "COMUNIDADE") {
-      //     return "Comunidade";
-      //   }
-      //   return "ERRO: Undefined";
-      // }
     },
     {
-      title: "Operações",
+      title: "Ações",
       tmpl: Meteor.isClient && Template.organizacaoOperationCell
     }
   ]
@@ -72,12 +69,24 @@ TabularTables.Usuarios = new Tabular.Table({
       }
     },
     {
+      data: '_id',
+      title: "Perfil do Usuário",
+      render: function (val, type, doc) {
+        var role = Roles.getRolesForUser(val, Roles.GLOBAL_GROUP);
+        return _.find(roles, function(item){ return item.value == role}).label;
+      }
+    },
+    {
       data: 'createdAt',
       title: "Data de Criação",
       searchable: false,
       render: function (val, type, doc) {
         return moment(val).format('LLLL');
       }
+    },
+    {
+      title: "Ações",
+      tmpl: Meteor.isClient && Template.usersOperationCell
     }
   ]
 });

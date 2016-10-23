@@ -9,7 +9,12 @@ SchemaUsuarios = new SimpleSchema({
   senha: {
     type: String,
     optional: false,
-    label: 'Senha'
+    label: 'Senha',
+    autoform: {
+      afFieldInput: {
+        type: "password"
+      }
+    }
   },
   role: {
     label: "Perfil de Usuário",

@@ -1,3 +1,32 @@
 <template name="UpdateUsuario">
-  
+  <section class="content-header">
+    <h1>
+      <a href="{{pathFor 'users.list'}}" class="btn btn-warning">
+        <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
+      </a>
+      Novo Usuário
+      <small>Cadastrar novos usuários no sistema.</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
+      <li class="active">Cadastro de Usuários</li>
+    </ol>
+  </section>
+
+  <section class="content">
+    <!--{{> quickForm id="insertUserForm" type="method" meteormethod="addUser"
+    schema="SchemaUsuarios" buttonContent="Enviar"}}-->
+
+    {{#autoForm id="updateUserForm" type="method-update" meteormethod="updateUser"
+                schema="SchemaUsuarios" doc=this}}
+        {{> afQuickField name="email"}}
+        {{> afQuickField name="role"}}
+        {{> afQuickField name="fiel"}}
+
+        <div>
+          <button type="submit" class="btn btn-primary">Atualizar</button>
+          {{#quickRemoveButton class="btn btn-danger" collection="Meteor.users" _id=this._id}}Excluir este registro{{/quickRemoveButton}}
+        </div>
+    {{/autoForm}}
+  </section>
 </template>
