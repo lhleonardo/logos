@@ -1,4 +1,20 @@
-SchemaContribuicoes = new SimpleSchema({
+Contribuicoes = new Mongo.Collection('contribuicoes');
+
+Contribuicoes.attachSchema(new SimpleSchema({
+  contribuidor: {
+    type: String,
+    autoform: {
+      type: "select2",
+      options: function () {
+        let valores = [];
+        let pessoas = Fieis.find();
+        pessoas.forEach((pessoa)=> {
+          valores.push({label: pessoa.nome, value: pessoa._id});
+        });
+        return valores;
+      }
+    }
+  },
   tipo: {
     type: String,
     label: 'Tipo de Contribuição (Obrigatório)',
@@ -25,4 +41,34 @@ SchemaContribuicoes = new SimpleSchema({
     label: "Valor fornecido",
     optional: false
   }
-});
+}));
+
+if (Meteor.isServer) {
+  Contribuicoes.allow({
+    insert: function (userId, doc) {
+      return false;
+    },
+
+    update: function (userId, doc, fieldNames, modifier) {
+      return false;
+    },
+
+    remove: function (userId, doc) {
+      return false;
+    }
+  });
+
+  Contribuicoes.deny({
+    insert: function (userId, doc) {
+      return true;
+    },
+
+    update: function (userId, doc, fieldNames, modifier) {
+      return true;
+    },
+
+    remove: function (userId, doc) {
+      return true;
+    }
+  });
+}
