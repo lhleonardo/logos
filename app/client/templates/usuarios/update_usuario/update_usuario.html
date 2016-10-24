@@ -16,13 +16,10 @@
   <section class="content">
     <!--{{> quickForm id="insertUserForm" type="method" meteormethod="addUser"
     schema="SchemaUsuarios" buttonContent="Enviar"}}-->
+    <h1>Para fazer.....</h1>
+    {{#autoForm id="updateUserForm" doc=this schema="SchemaUsuarios" type="method-update" meteormethod="updateUser"}}
 
-    {{#autoForm id="updateUserForm" type="method-update" meteormethod="updateUser"
-                schema="SchemaUsuarios" doc=this}}
-        {{> afQuickField name="email"}}
-        {{> afQuickField name="role"}}
-        {{> afQuickField name="fiel"}}
-
+        {{> afQuickField name="email" value="lhleonardo@hotmail.teste"}}
         <div>
           <button type="submit" class="btn btn-primary">Atualizar</button>
           {{#quickRemoveButton class="btn btn-danger" collection="Meteor.users" _id=this._id}}Excluir este registro{{/quickRemoveButton}}

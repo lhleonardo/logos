@@ -1,7 +1,7 @@
 UsersController = RouteController.extend({
 
   layoutTemplate: 'MasterLayout',
-  
+
   subscriptions: function() {
     if (Roles.userIsInRole(Meteor.user(), ['admin'], Roles.GLOBAL_GROUP)) {
       this.subscribe('fieis');
@@ -26,10 +26,17 @@ UsersController = RouteController.extend({
   },
 
   data: function () {
-    return Meteor.users.find({_id : this.params._id});
+    let data = Meteor.users.findOne({_id: this.params._id});
+    if (data) {
+      console.log("encontrou um usuário");
+
+    }
+
+    return data;
   },
 
   onBeforeAction: function () {
+
     if (!Meteor.userId()) {
       this.redirect('login');
       this.stop();

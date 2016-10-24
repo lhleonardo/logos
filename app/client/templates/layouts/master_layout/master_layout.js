@@ -22,3 +22,24 @@ Template.registerHelper("roleName", function(){
   });
   return Session.get("nomeRole");
 });
+
+Template.MasterLayout.helpers({
+  create: function(){
+    var self = this;
+
+    self.minHeight = new ReactiveVar(
+      $(window).height() - $('.main-header').height());
+
+    $(window).resize(function () {
+      self.minHeight.set($(window).height() - $('.main-header').height());
+    });
+
+    $('body').addClass('fixed');
+  },
+  destroyed: function(){
+    $('body').removeClass('fixed');
+  },
+  minHeight: function () {
+    return Template.instance().minHeight.get() + 'px'
+  }
+});
