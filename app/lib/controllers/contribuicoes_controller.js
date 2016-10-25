@@ -12,6 +12,10 @@ ContribuicoesController = RouteController.extend({
     this.render('CreateContribuicao', {});
   },
 
+  list: function() {
+    this.render("ListContribuicao", {});
+  },
+
   onBeforeAction: function () {
     if (!Meteor.userId()) {
       this.redirect('login');

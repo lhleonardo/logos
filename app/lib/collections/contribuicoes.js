@@ -29,7 +29,12 @@ Contribuicoes.attachSchema(new SimpleSchema({
   },
   data: {
     type: 'datetime-local',
-    label: "Data da contribuição (Padrão: hoje)"
+    label: "Data da contribuição (Padrão: hoje)",
+    autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+    }
   },
   descricao: {
     type: String,
@@ -46,28 +51,36 @@ Contribuicoes.attachSchema(new SimpleSchema({
 if (Meteor.isServer) {
   Contribuicoes.allow({
     insert: function (userId, doc) {
-      return false;
+      return Roles.userIsInRole(userId, ['admin', 'financeiro'], Roles.GLOBAL_GROUP);
     },
 
     update: function (userId, doc, fieldNames, modifier) {
-      return false;
+      return Roles.userIsInRole(userId, ['admin', 'financeiro'], Roles.GLOBAL_GROUP);
     },
 
     remove: function (userId, doc) {
+      if (Roles.userIsInRole(userId, ['admin', 'financeiro'], Roles.GLOBAL_GROUP)) {
+        // verificar se existem dependentes para esta organização
+        return true;
+      }
       return false;
     }
   });
 
   Contribuicoes.deny({
     insert: function (userId, doc) {
-      return true;
+      return !Roles.userIsInRole(userId, ['admin', 'financeiro'], Roles.GLOBAL_GROUP);
     },
 
     update: function (userId, doc, fieldNames, modifier) {
-      return true;
+      return !Roles.userIsInRole(userId, ['admin', 'financeiro'], Roles.GLOBAL_GROUP);
     },
 
     remove: function (userId, doc) {
+      if (Roles.userIsInRole(userId, ['admin', 'financeiro'], Roles.GLOBAL_GROUP)) {
+        // verificar se existem dependentes para esta organização
+        return false;
+      }
       return true;
     }
   });
