@@ -1,23 +1,24 @@
 Router.route('/pastorais', {
-  name: "pastorais.list",
+  name: "pastoral.list",
   controller: "PastoralController",
   action: "list"
 });
 
-Router.route('/pastorais/:_id', {
-  name: "pastorais.view",
-  controller: "PastoralController",
-  action: "view"
-});
-
 Router.route('/pastorais/create', {
-  name: "pastorais.create",
+  name: "pastoral.create",
   controller: "PastoralController",
   action: "create"
 });
 
-Router.route('/pastorais/:_id/edit', {
-  name: "pastorais.edit",
+Router.route('/pastoral/:_id', {
+  name: "pastoral.view",
+  controller: "PastoralController",
+  action: "view"
+});
+
+
+Router.route('/pastoral/:_id/edit', {
+  name: "pastoral.edit",
   controller: "PastoralController",
   action: "edit"
 });

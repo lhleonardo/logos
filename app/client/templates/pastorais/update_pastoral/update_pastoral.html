@@ -1,5 +1,26 @@
 <template name="UpdatePastoral">
-  <div class="update-pastoral">
-    <h1>Find me in app\client\templates\pastorais\update_pastoral\update_pastoral</h1>
-  </div>
+  <section class="content-header">
+    <h1>
+      <a href="{{pathFor 'pastoral.list'}}" class="btn btn-warning">
+        <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
+      </a>
+      Editar - {{nome}}
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
+      <li><a href="{{pathFor 'pastoral.list'}}"><i class="fa fa-list-alt"></i>Listagem de Pastorais</a></li>
+      <li><a href="{{pathFor 'pastoral.view' _id}}"><i class="fa fa-male">{{nome}}</i></a></li>
+      <li class="active"> <a href="{{pathFor 'pastoral.edit' _id}}"><i class="fa fa-edit">Editar</i></a></li>
+    </ol>
+  </section>
+
+  <section class="content">
+        {{#autoForm doc=this collection="Pastorais" id="updatePastoralForm" type="update"}}
+            {{> afQuickFields}}
+            <div>
+              <button type="submit" class="btn btn-primary">Atualizar</button>
+              {{#quickRemoveButton class="btn btn-danger" collection="Pastorais" _id=this._id}}Excluir este registro{{/quickRemoveButton}}
+            </div>
+        {{/autoForm}}
+  </section>
 </template>

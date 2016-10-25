@@ -1,5 +1,19 @@
 <template name="CreatePastoral">
-  <div class="create-pastoral">
-    <h1>Find me in app\client\templates\pastorais\create_pastoral\create_pastoral</h1>
-  </div>
+  <section class="content-header">
+    <h1>
+      <a href="{{pathFor 'pastoral.list'}}" class="btn btn-warning">
+        <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
+      </a>
+      Nova pastoral
+      <small>Lançar nova contribuição ao fiel</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
+      <li class="active">Nova Pastoral</li>
+    </ol>
+  </section>
+
+  <section class="content">
+    {{> quickForm id="insertPastoralForm" type="insert" collection="Pastorais" buttonContent="Salvar"}}
+  </section>
 </template>

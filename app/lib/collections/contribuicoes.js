@@ -42,16 +42,9 @@ Contribuicoes.attachSchema(new SimpleSchema({
     label: 'Descrição desta contribuição (Opcional)'
   },
   valor: {
-    type: String,
+    type: Number,
     label: "Valor fornecido (R$)",
-    optional: false,
-    autoform: {
-      type: 'masked-input',
-      mask: "000.000.000.000.000,00",
-      maskOptions: {
-      	placeholder: "___.___.___.___.___,__"
-      },
-    }
+    optional: false
   }
 }));
 

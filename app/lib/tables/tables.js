@@ -118,3 +118,17 @@ TabularTables.Usuarios = new Tabular.Table({
     }
   ]
 });
+
+TabularTables.Pastorais = new Tabular.Table({
+  name: "Pastorais",
+  collection: Pastorais,
+  responsive: true,
+  autoWidth: false,
+  columns: [
+    {data: "nome", title: "Nome da paróquia"},
+    {
+      title: "Ações",
+      tmpl: Meteor.isClient && Template.pastoralOperationCell
+    }
+  ]
+});
