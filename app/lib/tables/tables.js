@@ -47,9 +47,7 @@ TabularTables.Organizacoes = new Tabular.Table({
 TabularTables.Usuarios = new Tabular.Table({
   name: "Usuarios",
   collection: Meteor.users,
-  responsive: true,
   autoWidth: false,
-
   columns: [
     {
       data: "emails",

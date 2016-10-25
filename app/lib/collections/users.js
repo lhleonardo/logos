@@ -113,3 +113,9 @@ Schema.User = new SimpleSchema({
 });
 
 Meteor.users.attachSchema(Schema.User);
+
+Meteor.users.allow({
+  remove: function (userId, doc) {
+    return Roles.userIsInRole(Meteor.user(), "admin", Roles.GLOBAL_GROUP);
+  }
+});

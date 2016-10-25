@@ -21,13 +21,13 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+              <p class="box-text">Os usuários cadastrados não poderão ter seus dados alterados, apenas removidos.</p>
               <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                 <div class="row">
                   <div class="col-sm-12" style="margin-bottom: 1%">
                   </div>
                 </div>
                 <div class="row">
-                  <p>Os usuários cadastrados não poderão ter seus dados alterados, apenas removidos.</p>
                   <div class="col-sm-12">
                       {{> tabular table=TabularTables.Usuarios
                         class="table table-hover"}}
@@ -45,7 +45,7 @@
 </template>
 
 <template name="usersOperationCell">
-  <a class="btn btn-danger" href="#">
+  <a class="btn btn-danger btn-apaga-registro" href="#{{_id}}" data-id="{{_id}}">
     <i class="fa fa-trash-o"></i> Excluir
   </a>
 </template>
