@@ -25,6 +25,7 @@ aldeed:tabular
 aldeed:delete-button
 aldeed:autoform-bs-datepicker
 aldeed:autoform-select2
+aldeed:autoform-bs-datetimepicker
 alanning:roles
 twbs:bootstrap
 fortawesome:fontawesome
@@ -43,3 +44,4 @@ matb33:collection-hooks
 momentjs:moment
 themeteorchef:bert
 kevohagan:sweetalert
+tsega:bootstrap3-datetimepicker

@@ -5,6 +5,7 @@ accounts-ui-unstyled@1.1.6
 alanning:roles@1.2.15
 aldeed:autoform@5.8.1
 aldeed:autoform-bs-datepicker@1.1.1
+aldeed:autoform-bs-datetimepicker@1.0.6
 aldeed:autoform-select2@2.0.2
 aldeed:collection2@2.10.0
 aldeed:collection2-core@1.2.0
@@ -113,6 +114,7 @@ templating-runtime@1.2.15
 templating-tools@1.0.5
 themeteorchef:bert@1.1.0
 tracker@1.1.0
+tsega:bootstrap3-datetimepicker@4.17.37_1
 twbs:bootstrap@3.3.6
 ui@1.0.12
 underscore@1.0.9
