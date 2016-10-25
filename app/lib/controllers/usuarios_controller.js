@@ -13,26 +13,8 @@ UsersController = RouteController.extend({
     this.render('CreateUsuario', {});
   },
 
-  edit: function() {
-    this.render('UpdateUsuario', {});
-  },
-
   list: function() {
     this.render('ListUsuario', {});
-  },
-
-  view: function () {
-    this.render('ViewUsuario', {});
-  },
-
-  data: function () {
-    let data = Meteor.users.findOne({_id: this.params._id});
-    if (data) {
-      console.log("encontrou um usuário");
-
-    }
-
-    return data;
   },
 
   onBeforeAction: function () {
