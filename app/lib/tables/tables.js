@@ -44,6 +44,36 @@ TabularTables.Organizacoes = new Tabular.Table({
   ]
 });
 
+TabularTables.Contribuicoes = new Tabular.Table({
+  name: "Contribuicoes",
+  collection: Contribuicoes,
+  responsive: true,
+  autoWidth: false,
+  columns: [
+    {
+      data: "contribuidor",
+      title: "Contribuidor",
+      render: function (val, type, doc) {
+        let fiel = Fieis.findOne({_id: val});
+        return fiel.nome;
+      }
+    },
+    {data: "tipo", title: "Tipo"},
+    {
+      data: "data",
+      title: "Data de lançamento"
+      /*render: function (val, type, doc) {
+        return moment(val).format('LLLL');
+      }*/
+    },
+    {
+      title: "Valor",
+      data: 'valor'
+    }
+
+  ]
+});
+
 TabularTables.Usuarios = new Tabular.Table({
   name: "Usuarios",
   collection: Meteor.users,
