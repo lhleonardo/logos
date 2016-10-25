@@ -28,13 +28,13 @@ Contribuicoes.attachSchema(new SimpleSchema({
     }
   },
   data: {
-    type: 'datetime-local',
+    type: Date,
     label: "Data da contribuição (Padrão: hoje)",
     autoform: {
-      afFieldInput: {
-        type: "bootstrap-datetimepicker"
-      }
-    }
+     afFieldInput: {
+       type: "bootstrap-datetimepicker"
+     }
+   }
   },
   descricao: {
     type: String,
@@ -43,8 +43,15 @@ Contribuicoes.attachSchema(new SimpleSchema({
   },
   valor: {
     type: String,
-    label: "Valor fornecido",
-    optional: false
+    label: "Valor fornecido (R$)",
+    optional: false,
+    autoform: {
+      type: 'masked-input',
+      mask: "000.000.000.000.000,00",
+      maskOptions: {
+      	placeholder: "___.___.___.___.___,__"
+      },
+    }
   }
 }));
 

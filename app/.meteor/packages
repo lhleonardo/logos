@@ -44,4 +44,4 @@ matb33:collection-hooks
 momentjs:moment
 themeteorchef:bert
 kevohagan:sweetalert
-tsega:bootstrap3-datetimepicker
+tsega:bootstrap3-datetimepicker@=3.1.3_3
