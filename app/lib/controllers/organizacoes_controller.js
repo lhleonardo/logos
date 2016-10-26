@@ -6,6 +6,8 @@ OrganizacoesController = RouteController.extend({
     if (Roles.userIsInRole(Meteor.user(), ['admin', 'secretaria'], Roles.GLOBAL_GROUP)) {
       console.log("subscribing...");
       this.subscribe('organizacoes');
+      this.subscribe('pastorais');
+      this.subscribe('fieis');
     }
   },
 

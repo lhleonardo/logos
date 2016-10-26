@@ -9,3 +9,15 @@ Router.route('/contribuicoes', {
   controller: 'ContribuicoesController',
   action: 'list'
 });
+
+Router.route('/contribuicoes/:_id', {
+  name: "contribuicoes.view",
+  controller: 'ContribuicoesController',
+  action: 'view'
+});
+
+Router.route('/contribuicoes/:_id/edit', {
+  name: "contribuicoes.edit",
+  controller: 'ContribuicoesController',
+  action: 'edit'
+});

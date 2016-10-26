@@ -105,25 +105,67 @@ Organizacoes.attachSchema(new SimpleSchema({
       }
 		}
   },
+  pastorais: {
+    type: Array,
+    optional: true,
+    label: "Pastorais presentes na organização"
+  },
+  "pastorais.$": {
+    type: Object
+  },
+  'pastorais.$.pastoral': {
+    type: String,
+    optional: false,
+    label: "Nome da Pastoral",
+    autoform: {
+      type: "select2",
+      options: function() {
+        let valores = [];
+        Pastorais.find().forEach((pastoral) => {
+          valores.push({label: pastoral.nome, value: pastoral._id});
+        });
+        return valores;
+      }
+    }
+  },
+  'pastorais.$.responsaveis': {
+    type: [String],
+    optional: false,
+    label: "Responsáveis pela pastoral",
+    autoform: {
+      type: 'select2',
+      afFieldInput: {
+        multiple: true
+      },
+      options: function (){
+        let valores = [];
+        Fieis.find().forEach((fiel)=>{
+          valores.push({label: fiel.nome, value: fiel._id});
+        });
+        return valores;
+      }
+    }
+  },
   endereco: {
     type: SchemaEndereco,
     optional: false
   }
 }));
 
+var SchemaPastorais = new SimpleSchema({
+
+});
+
 Organizacoes.after.insert(function (userId, doc) {
   if (_.has(doc, "coordenadora")) {
     // adiciona 'this' aos dependentes da coordenadora
     var coordenadora = Organizacoes.findOne({_id: doc.coordenadora});
+
     if (! _.has(coordenadora, "dependentes")) {
       coordenadora.dependentes = [];
     }
-    console.log("Eu sou: "+ doc._id);
+
     coordenadora.dependentes.push(doc._id);
-    console.log("dependentes da coordenadora: \n");
-    coordenadora.dependentes.forEach(function (dependente) {
-      console.log("Dependente : " + dependente);
-    });
 
     Organizacoes.update({_id: doc.coordenadora}, {$set:{
       dependentes: coordenadora.dependentes

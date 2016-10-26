@@ -69,6 +69,10 @@ TabularTables.Contribuicoes = new Tabular.Table({
     {
       title: "Valor",
       data: 'valor'
+    },
+    {
+      title: "Ações",
+      tmpl: Meteor.isClient && Template.contribuicaoOperationCell
     }
 
   ]

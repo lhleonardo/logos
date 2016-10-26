@@ -1,0 +1,25 @@
+<template name="UpdateContribuicao">
+  <section class="content-header">
+    <h1>
+      <a href="{{pathFor 'contribuicoes.list'}}" class="btn btn-warning">
+        <i class="fa fa-backward" aria-hidden="true"></i>  Voltar
+      </a>
+      Editar lançamento
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
+      <li><a href="{{pathFor 'contribuicoes.list'}}"><i class="fa fa-list-alt"></i>Histórico de Contribuições</a></li>
+      <li class="active"> <a href="{{pathFor 'contribuicoes.edit' _id}}"><i class="fa fa-edit">Editar lançamento</i></a></li>
+    </ol>
+  </section>
+
+  <section class="content">
+    {{#autoForm doc=this collection="Contribuicoes" id="updateContribuicoesForm" type="update"}}
+        {{> afQuickFields}}
+        <div>
+          <button type="submit" class="btn btn-primary">Atualizar</button>
+          {{#quickRemoveButton class="btn btn-danger" collection="Contribuicoes" _id=this._id}}Excluir lançamento{{/quickRemoveButton}}
+        </div>
+    {{/autoForm}}
+  </section>
+</template>
