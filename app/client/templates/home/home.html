@@ -3,13 +3,40 @@
   </div>
 
   <section class="content-header">
-      <h1>Find me in app/client/templates/home/home</h1>
+      <h1>Menu Principal</h1>
     <ol class="breadcrumb">
       <li class="active"><a href="{{pathFor 'home'}}"><i class="fa fa-dashboard"></i>Home</a></li>
     </ol>
   </section>
 
   <section class="content">
-    <h3>Teste</h3>
+    {{#each cards}}
+       {{> card}}
+    {{/each}}
   </section>
+</template>
+
+<template name="card">
+  {{#if isInRole roles}}
+    <div class="col-lg-3 col-xs-6">
+      <a href="{{pathFor route}}">
+        <div class="small-box bg-{{color}}">
+          <div class="inner">
+  					<h3>
+  						{{invoke count}}
+  					</h3>
+  					<p>
+  						{{label}}
+  					</p>
+  				</div>
+  				<div class="icon">
+  					<i class="fa fa-{{icon}}"></i>
+  				</div>
+  				<a class="small-box-footer">
+  					Ver todos <i class="fa fa-arrow-circle-right"></i>
+  				</a>
+        </div>
+      </a>
+    </div>
+  {{/if}}
 </template>

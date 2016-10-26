@@ -50,5 +50,25 @@ Meteor.methods({
     } else {
       // what to do?
     }
+  },
+  'sizeFieis': function () {
+    var size = Fieis.find().count();
+    return size;
+  },
+  'sizeContribuicoes': function () {
+    var size = Contribuicoes.find().count();
+    return size;
+  },
+  'sizePastorais': function () {
+    var size = Pastorais.find().count();
+    return size;
+  },
+  'sizeUsers': function () {
+    var size = Meteor.users.find().count();
+    return size;
+  },
+  'sizeOrganizacoes': function () {
+    var size = Organizacoes.find().count();
+    return size;
   }
 });
